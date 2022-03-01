@@ -3,6 +3,15 @@ header h1 {
 font-family: 'Courier New', Courier, monospace;
 }
 
+header h2 {
+    font-family: 'Courier New', Courier, monospace;
+}
+
 button {
     font-family: 'Courier New', Courier, monospace;
+}
+
+button:hover {
+    background-color: aquamarine;
+    opacity: 40%;
 }

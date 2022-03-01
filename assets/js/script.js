@@ -1,4 +1,7 @@
 var timeEl = document.getElementById('timer');
+var startButton = document.getElementById('start');
+
+startButton.addEventListener('click', startQuiz)
 
 function timer() {
     var remaining = 75;
@@ -18,4 +21,12 @@ function timer() {
     }, 1000);
 };
 
-timer;
+function startQuiz() {
+    startButton.classList.add('hide')
+}
+
+function nextQuestion() {
+
+}
+
+//timer();
