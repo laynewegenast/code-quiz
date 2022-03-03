@@ -29,3 +29,7 @@ button:hover {
 #score-input {
     font-family: 'Courier New', Courier, monospace;
 }
+
+.hidden {
+    display: none;
+}

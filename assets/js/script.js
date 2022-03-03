@@ -3,9 +3,8 @@ var startButton = document.getElementById('start');
 var viewScores = document.getElementById('scores-btn');
 var questionEl = document.getElementById('questions');
 
-startButton.addEventListener('click', startQuiz)
-viewScores.addEventListener('click', highScoresList)
 
+var currentQuestion = 0
 //quiz timer starts when start button is clicked
 function timer() {
     var remaining = 75;
@@ -13,10 +12,10 @@ function timer() {
     var timeInterval = setInterval (function (){
         if (remaining > 1) {
             timeEl.textContent = remaining + ' seconds remaining';
-            timeCount--;
+            remaining--;
         } else if (remaining === 1) {
             timeEl.textContent = remaining + ' second remaining';
-            timeLeft--;
+            remaining--;
         } else {
             timeEl.textContent = 'Times up!';
             clearInterval(timeInterval);
@@ -28,13 +27,16 @@ function timer() {
 //when start button is clicked hide button show first question
 function startQuiz() {
     console.log('start');
-    startButton.classList.add('hide')
+    startButton.classList.add('hidden')
+    questionEl.classList.remove('hidden')
+    timer()
+    nextQuestion()
     //questionEl.classList.remove('hide')
 };
 
 //view highscores
 function highScoresList() {
-    console.log('scores')
+    
 };
 
 //store highscores in local storage
@@ -74,8 +76,18 @@ var quizQuestions = [
 ];
 
 function nextQuestion() {
-
+    document.getElementById('question').textContent = quizQuestions[currentQuestion].question
+    var optionButtons = document.querySelectorAll('.answer')
+    var i = 0
+    optionButtons.forEach(function(element){
+        element.textContent = quizQuestions [currentQuestion].answers[i]
+        i++
+    })
 };
 
+
+
 //startQuiz();
-//timer();
+
+startButton.addEventListener('click', startQuiz)
+viewScores.addEventListener('click', highScoresList)
