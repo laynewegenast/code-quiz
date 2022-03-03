@@ -6,10 +6,10 @@ var questionEl = document.getElementById('questions');
 var userScore = 0
 var optionButtons = document.querySelectorAll('.answer')
 var currentQuestion = 0
+var remaining = 75;
 //quiz timer starts when start button is clicked
 function timer() {
-    var remaining = 75;
-
+   
     var timeInterval = setInterval(function () {
         if (remaining > 1) {
             timeEl.textContent = remaining + ' seconds remaining';
@@ -90,7 +90,17 @@ function checkAnswer() {
     
         var userChoice = this.textContent
         console.log('test', userChoice)
-    
+    if ( userChoice == quizQuestions[currentQuestion].correctOption) {
+        userScore += 10
+        document.getElementById('correct-answer').textContent = 'Correct!'
+    } else {
+        document.getElementById('correct-answer').textContent = 'Wrong!'
+        remaining -= 5
+    }
+    if (currentQuestion < quizQuestions.length - 1) {
+        currentQuestion++ 
+        nextQuestion()
+    }
 };
 
 
