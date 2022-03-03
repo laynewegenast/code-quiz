@@ -15,3 +15,17 @@ button:hover {
     background-color: aquamarine;
     opacity: 40%;
 }
+
+#multiple-choice {
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+}
+
+#question {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+#score-input {
+    font-family: 'Courier New', Courier, monospace;
+}

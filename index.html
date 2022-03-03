@@ -11,20 +11,29 @@
     <header>
         <h1>Welcome to the Code Quiz!</h1>
         <h2 id="timer"></h2>
+        <div>
+            <button id="scores-btn">View High Scores</button>
+        </div>
+        <div class="style">
+            <button id="start" class="startbtn">Start Quiz!</button>
+        </div>
     </header>
+<section id="quiz">
     <div class="quiz-box">
         <div id="questions" class="hidden"></div>
-        <div id="question">Question</div>
+        <h2 id="question">Question</h2>
         <div id="multiple-choice" class="choice-btn">
             <button class="answer">A</button>
             <button class="answer">B</button>
             <button class="answer">C</button>
             <button class="answer">D</button>
         </div>
-        <div class="style">
-            <button id="start" class="startbtn">Start Quiz!</button>
-        </div>
     </div>
+</section>
+<section id="score-input">
+    <h2>High Scores</h2>
+    <ol id="high-scores"></ol>
+</section>
     <script src="./assets/js/script.js"></script>
 </body>
 </html>
