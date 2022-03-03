@@ -7,10 +7,11 @@ var userScore = 0
 var optionButtons = document.querySelectorAll('.answer')
 var currentQuestion = 0
 var remaining = 75;
+var timeInterval;
 //quiz timer starts when start button is clicked
 function timer() {
    
-    var timeInterval = setInterval(function () {
+     timeInterval = setInterval(function () {
         if (remaining > 1) {
             timeEl.textContent = remaining + ' seconds remaining';
             remaining--;
@@ -92,20 +93,24 @@ function checkAnswer() {
         console.log('test', userChoice)
     if ( userChoice == quizQuestions[currentQuestion].correctOption) {
         userScore += 10
-        document.getElementById('correct-answer').textContent = 'Correct!'
+        document.getElementById('correct-answer').textContent = 'Correct! Score: ' + userScore 
     } else {
-        document.getElementById('correct-answer').textContent = 'Wrong!'
+        document.getElementById('correct-answer').textContent = 'Wrong! Score: ' + userScore
         remaining -= 5
     }
     if (currentQuestion < quizQuestions.length - 1) {
         currentQuestion++ 
         nextQuestion()
+    } else {
+        questionEl.classList.add('hidden')
+        document.getElementById('score-input').classList.remove('hidden')
+        clearInterval(timeInterval);
+        document.getElementById('display-score').textContent = 'Current Score' + (userScore + remaining)
     }
 };
 
 
 
-//startQuiz();
 
 startButton.addEventListener('click', startQuiz)
 viewScores.addEventListener('click', highScoresList)
