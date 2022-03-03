@@ -3,13 +3,14 @@ var startButton = document.getElementById('start');
 var viewScores = document.getElementById('scores-btn');
 var questionEl = document.getElementById('questions');
 
-
+var userScore = 0
+var optionButtons = document.querySelectorAll('.answer')
 var currentQuestion = 0
 //quiz timer starts when start button is clicked
 function timer() {
     var remaining = 75;
 
-    var timeInterval = setInterval (function (){
+    var timeInterval = setInterval(function () {
         if (remaining > 1) {
             timeEl.textContent = remaining + ' seconds remaining';
             remaining--;
@@ -36,7 +37,7 @@ function startQuiz() {
 
 //view highscores
 function highScoresList() {
-    
+
 };
 
 //store highscores in local storage
@@ -47,9 +48,9 @@ var quizQuestions = [
     {
         question: "What does HTML stand for?",
         answers: [
-            "Hypertext Math Lesson", 
-            "Hypertext Markup Language", 
-            "Happy Time Messy Language", 
+            "Hypertext Math Lesson",
+            "Hypertext Markup Language",
+            "Happy Time Messy Language",
             "Hypermarkup Text Language"],
         correctOption: "Hypertext Markup Language"
     },
@@ -57,9 +58,9 @@ var quizQuestions = [
     {
         question: "Which is an example of a Third Party API?",
         answers: [
-            "jQuery", 
-            "Bootstrap", 
-            "Moment.js", 
+            "jQuery",
+            "Bootstrap",
+            "Moment.js",
             "all of the above"],
         correctOption: "all of the above"
     },
@@ -67,9 +68,9 @@ var quizQuestions = [
     {
         question: "Which of the following is an example of an Event Listener?",
         answers: [
-            "click", 
-            "hello", 
-            "goodbye", 
+            "click",
+            "hello",
+            "goodbye",
             "all of the above"],
         correctOption: "click"
     },
@@ -77,12 +78,19 @@ var quizQuestions = [
 
 function nextQuestion() {
     document.getElementById('question').textContent = quizQuestions[currentQuestion].question
-    var optionButtons = document.querySelectorAll('.answer')
+
     var i = 0
-    optionButtons.forEach(function(element){
-        element.textContent = quizQuestions [currentQuestion].answers[i]
+    optionButtons.forEach(function (element) {
+        element.textContent = quizQuestions[currentQuestion].answers[i]
         i++
     })
+};
+
+function checkAnswer() {
+    
+        var userChoice = this.textContent
+        console.log('test', userChoice)
+    
 };
 
 
@@ -91,3 +99,7 @@ function nextQuestion() {
 
 startButton.addEventListener('click', startQuiz)
 viewScores.addEventListener('click', highScoresList)
+document.getElementById('option1').addEventListener('click', checkAnswer)
+document.getElementById('option2').addEventListener('click', checkAnswer)
+document.getElementById('option3').addEventListener('click', checkAnswer)
+document.getElementById('option4').addEventListener('click', checkAnswer)
