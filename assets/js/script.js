@@ -8,9 +8,9 @@ var optionButtons = document.querySelectorAll('.answer')
 var currentQuestion = 0
 var remaining = 75;
 var timeInterval;
+
 //quiz timer starts when start button is clicked
 function timer() {
-   
      timeInterval = setInterval(function () {
         if (remaining > 1) {
             timeEl.textContent = remaining + ' seconds remaining';
@@ -28,21 +28,11 @@ function timer() {
 
 //when start button is clicked hide button show first question
 function startQuiz() {
-    console.log('start');
     startButton.classList.add('hidden')
     questionEl.classList.remove('hidden')
     timer()
     nextQuestion()
-    //questionEl.classList.remove('hide')
 };
-
-//view highscores
-function highScoresList() {
-
-};
-
-//store highscores in local storage
-
 
 //quesiton arrays
 var quizQuestions = [
@@ -105,11 +95,30 @@ function checkAnswer() {
         questionEl.classList.add('hidden')
         document.getElementById('score-input').classList.remove('hidden')
         clearInterval(timeInterval);
-        document.getElementById('display-score').textContent = 'Current Score' + (userScore + remaining)
+        document.getElementById('display-score').textContent = 'Current Score ' + (userScore + remaining)
     }
 };
 
+//view highscores
+function highScoresList() {
+    
+};
 
+//save score 
+function saveScore() {
+
+    storeHighScoreList();
+};
+
+//store highscores in local storage
+function storeHighScoreList() {
+    localStorage.setItem("highScores", JSON.stringify(highScores));
+};
+
+//show list of high scores that have been stored
+function scoreList() {
+
+};
 
 
 startButton.addEventListener('click', startQuiz)
@@ -118,3 +127,4 @@ document.getElementById('option1').addEventListener('click', checkAnswer)
 document.getElementById('option2').addEventListener('click', checkAnswer)
 document.getElementById('option3').addEventListener('click', checkAnswer)
 document.getElementById('option4').addEventListener('click', checkAnswer)
+document.getElementById('save-score').addEventListener('click', saveScore)

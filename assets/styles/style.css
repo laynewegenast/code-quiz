@@ -30,6 +30,18 @@ button:hover {
     font-family: 'Courier New', Courier, monospace;
 }
 
+#user-info {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+#display-score {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+#correct-answer {
+    font-family: 'Courier New', Courier, monospace;
+}
+
 .hidden {
     display: none;
 }
