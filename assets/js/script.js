@@ -2,6 +2,8 @@ var timeEl = document.getElementById('timer');
 var startButton = document.getElementById('start');
 var viewScores = document.getElementById('scores-btn');
 var questionEl = document.getElementById('questions');
+var saveScore = document.getElementById('save-score');
+var userInfo = document.querySelector('#user-info');
 
 var userScore = 0
 var optionButtons = document.querySelectorAll('.answer')
@@ -21,7 +23,6 @@ function timer() {
         } else {
             timeEl.textContent = 'Times up!';
             clearInterval(timeInterval);
-
         }
     }, 1000);
 };
@@ -80,13 +81,13 @@ function nextQuestion() {
 function checkAnswer() {
     
         var userChoice = this.textContent
-        console.log('test', userChoice)
+        console.log(userChoice)
     if ( userChoice == quizQuestions[currentQuestion].correctOption) {
         userScore += 10
         document.getElementById('correct-answer').textContent = 'Correct! Score: ' + userScore 
     } else {
         document.getElementById('correct-answer').textContent = 'Wrong! Score: ' + userScore
-        remaining -= 5
+        remaining -= 10
     }
     if (currentQuestion < quizQuestions.length - 1) {
         currentQuestion++ 
@@ -96,28 +97,34 @@ function checkAnswer() {
         document.getElementById('score-input').classList.remove('hidden')
         clearInterval(timeInterval);
         document.getElementById('display-score').textContent = 'Current Score ' + (userScore + remaining)
+        timeEl.classList.add('hidden')
+        viewScores.classList.add('hidden')
     }
 };
 
-//view highscores
+//view highscores stored in local storage
 function highScoresList() {
+    // var 
+};
+
+
+saveScore.addEventListener('click', function(event) {
+    event.preventDefault();
+    var user = { 
+    initials: userInfo.value.trim()
+    };
     
-};
 
-//save score 
-function saveScore() {
+    localStorage.setItem("user", JSON.stringify(user));
 
-    storeHighScoreList();
-};
+    //storeHighScoreList();
+    //showScoreList();
+});
 
-//store highscores in local storage
-function storeHighScoreList() {
-    localStorage.setItem("highScores", JSON.stringify(highScores));
-};
 
-//show list of high scores that have been stored
-function scoreList() {
-
+//show list of high scores that have been stored on final page
+function showScoreList() {
+    var storedHighScores = JSON.parse(localStorage.getItem("highScores"));
 };
 
 
@@ -127,4 +134,3 @@ document.getElementById('option1').addEventListener('click', checkAnswer)
 document.getElementById('option2').addEventListener('click', checkAnswer)
 document.getElementById('option3').addEventListener('click', checkAnswer)
 document.getElementById('option4').addEventListener('click', checkAnswer)
-document.getElementById('save-score').addEventListener('click', saveScore)
